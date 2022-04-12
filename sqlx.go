@@ -636,7 +636,7 @@ func Connect(driverName, dataSourceName string) (*DB, error) {
 		return nil, err
 	}
 	err = db.Ping()
-	if err != nil {
+	if err != nil && !strings.Contains(err.Error(), "OCI_SUCCESS") {
 		db.Close()
 		return nil, err
 	}
